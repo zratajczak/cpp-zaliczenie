@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+class DNA
+{
+private:
+    std::string sequence;
+
+public:
+    DNA(const std::string &seq) : sequence(seq) {}
+
+    std::string ReverseComp()
+    {
+        std::string revComp = sequence;
+        std::reverse(revComp.begin(), revComp.end());
+
+        for (char &c : revComp)
+        {
+            switch (c)
+            {
+                case 'A':
+                    c = 'T';
+                    break;
+                case 'T':
+                    c = 'A';
+                    break;
+                case 'C':
+                    c = 'G';
+                    break;
+                case 'G':
+                    c = 'C';
+                    break;
+            }
+        }
+        return revComp;
+    }
+};
+
+int main()
+{
+    std::string input = "AGGGAAACCCTTATTTACCGACAGGTCATATACCAATCATTAAGCCTTGGAGCGACGGGGCTTTAGTACTATGGCTCTCACGAACTAACTCGCGAGTACGCTTCGGCCTTTGACTAGGTTTAAGGCGTCATCATGCCACGGGCATTTCATAGAATCTAGATGGAGGGTCGTATACAGTTCTGATAGAAGAACACGAAATTAAGTGTCGGTGATCTCGCCATCATCGTCCGTCGAGAAGAGGTACCTGTATAAGGCCATGCGTGGGGTGAAGCCGTGTAGCAATTGTTCAGAGCGTAACCATTTGCGCGCAAAGTGAATAATTCAGTCCTGCTACAGAGATACTTAAGCACCTTTTTGCACGCCACCCTCCCCGCCTATGTTTCTTTGAATACTTTACCGGACACAGACTACACCCAGATTCGACCTATAGTGAGAGTCTGAAAGTTTACTCTCACGTGTTGCTGTGGCATGTGGACTTAGTGTAACTATTCACTTCTTCCGGGTATTTCGGCAGGGGTCAGTAGGTCAATTCATAGGTCCGATGAAGGCACTCCGGCGTGCAACAAGTTATAGTGTAGGCTGACCGGCAAAGCGATCCGTGATCCGTGATGTACACTGTTTAGCCACATACCAAGCATGACGTCTAGCCGGCGGCAAGATCAGGGGCATCATGGGAGTCTTCCTGCTTCCCTGGAGTGGATTACGATGCTAGTAGCCGCACCCGGTTGACAGGTGTTACAGGCAATGTATGCGATTAATGTATGCACACTGAGCCCTATCTAGAACCTCTCAACCGCCTGCTCAGCGTCCATGACATTCAAACGCAATGGGCGCTGTAT";
+    DNA dna(input);
+    std::cout << dna.ReverseComp() << std::endl;
+    return 0;
+}
