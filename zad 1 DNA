@@ -1,0 +1,43 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+class DNAString {
+private:
+    string sequence;
+    unordered_map<char, int> nucleotide_count;
+
+public:
+    DNAString(const string& seq) : sequence(seq) {
+        countNt();
+    }
+
+    void countNt() {
+        nucleotide_count['A'] = 0;
+        nucleotide_count['C'] = 0;
+        nucleotide_count['G'] = 0;
+        nucleotide_count['T'] = 0;
+
+        for (char nucleotide : sequence) {
+            if (nucleotide_count.find(nucleotide) != nucleotide_count.end()) {
+                nucleotide_count[nucleotide]++;
+            }
+        }
+    }
+
+    void printCounts() const {
+        cout << nucleotide_count.at('A') << " "
+             << nucleotide_count.at('C') << " "
+             << nucleotide_count.at('G') << " "
+             << nucleotide_count.at('T') << endl;
+    }
+};
+
+int main() {
+    string dna_sequence = "ACAGTGTTATAGGGTGACTGCATCGACAGTGATTTGCCACCGGTTCCGCTAACCCGAAAGACCGTAGGAACGTCTATCTGGAAGGACCCGACTGGTCGCTTTCTTCGGAGTCAACGCCTACCAATGTTCTTCCATTACGACCGGCCACACTGGGGATTAACTATGCAATCTGGCAACAATTACACGACGTGGATAGTCGTTGGTCAATTGGGGATTGACCAATCGCCTTTTCATGCAGATAATCCCGTCAGAAGCCTAAATAAGGTTATATACGAAAGGCGTGGCACGGCGTTTATACTCGCTGAAGGGGAGCTAGGAGAAGCTCCCCCCCGAAGGTCGTTGTGGCAATTCGCGAGGCACTTATACTGCAGTTCAGTGGCCGGCGGATACGAGAGTTGTCGGTGCAAGATGTTAGCTAAATTGGTCAATTGACTTGAGCATTTACCGCGAAAGAGGCACCAACGCATTAGTACCGCTCTTAACTCGCCGAAACAAATTTTCAGAGACACAACTTTGGCCATCCGAACTAGCAAGGGCTTCACTGGATCGAAGATTTGTTTCTGCGAGCGATACTAGCAACCATCATTAATGTAATCCGTCATCCCGATGCATCTGGGTAAGCGTAGACGGCTCCAGGCAGCTTCCCAATCGCCTAATAGGTGTAACATCAACAGCCATTTTGGGCGAGTTTCTGGGACTATAGTGCAGCTAGGCTGCGCGGATTATTAACTGTTCCTGGCATCTCTGTGCGGACACCGGGTCTCATTCTCTCAAATCTAAGTATGCGAAAGGCGTGAGCCTCGTCTGCCAGAGAAGGTCCGGAGAGAGCAGCTTCTGCGGCGCCAGTAATTGTAATCGCCACGTTCAAAAACAAGCCGAACGAAGTTTTTGCGGCTTTTATGATCCTGCGAATAG";
+
+    DNAString dna(dna_sequence);
+    dna.printCounts();
+
+    return 0;
+}
